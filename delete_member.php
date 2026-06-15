@@ -1,0 +1,39 @@
+<?php
+include("db.php");
+
+$id = $_GET['id'];
+
+mysqli_query($conn,
+"DELETE FROM members WHERE id='$id'");
+
+$action=
+
+"Deleted Member";
+
+mysqli_query($conn,
+
+"INSERT INTO activity_logs
+
+(
+
+admin_id,
+action,
+activity_date
+
+)
+
+VALUES
+
+(
+
+'1',
+
+'$action',
+
+CURDATE()
+
+)");
+
+header("Location: members.php");
+exit();
+?>
